@@ -32,12 +32,8 @@ class Player():
     def __init__(self, playerID):
         
         self.playerID = playerID
-    
-    def Gravity(self, gForce):
         
-        self.gForce = gForce
-        
-    def playerController(self, moveSpeed, strafeSpeed):
+    def playerController(self, moveSpeed, strafeSpeed, (gForce, jumpHeight)):
         
         global tx
         global ty
@@ -85,7 +81,25 @@ class Player():
                     
                     if key[pygame.K_SPACE]:
                         
-                        print("Jumping Coming Soon!")
+                        velocity = jumpHeight
+                        
+                        for x in range(0, velocity):
+                            
+                            ty += jumpHeight
+                            q.Render([tx, ty, tz])
+                            win.fill((255, 255, 255))
+                            
+                            jumpHeight -= 1
+                        
+                        pygame.time.wait(100)
+                        
+                        for a in range(0, velocity):
+                            
+                            ty -= jumpHeight
+                            q.Render([tx, ty, tz])
+                            win.fill((255, 255, 255))
+                            
+                            jumpHeight += 1
 
 class Vertice():
     
@@ -162,4 +176,4 @@ q.Render([tx, ty, tz])
 q.Rotate([rx, ry, rz])
 
 p = Player("Player 001")
-p.playerController(1, 5)
+p.playerController(1, 5, (-2.8, 15))
