@@ -7,7 +7,6 @@ import pygame, sys
 pygame.init()
 
 # Variable
-playerSpeed = 2
 s = 5
 
 tx = 0
